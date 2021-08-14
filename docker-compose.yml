@@ -1,0 +1,70 @@
+version: '3.8'
+
+services:
+  gcp_batch:
+    build: ./docker/gcp/
+    container_name: 'gcp_batch_python'
+    working_dir: '/service/'
+    tty: true
+    volumes:
+      - ./src:/service/src
+    ports:
+      - 8010:8080
+    command: >
+      bash -c '
+        pip install -r src/requirements.txt
+        functions-framework --target=handler --signature-type=event
+      '
+  aws_batch:
+    build: ./docker/aws/
+    container_name: 'aws_batch_python'
+    working_dir: '/var/task'
+    tty: true
+    ports:
+      - 8020:8080
+    volumes:
+      - ./src:/var/task/src
+      - ~/.aws:/root/.aws
+    entrypoint: >
+      bash -c '
+      pip install -r src/requirements.txt &&
+      /lambda-entrypoint.sh main.handler
+      '
+  local_batch:
+    build: ./docker/local/
+    container_name: 'local_batch_python'
+    working_dir: '/service/'
+    tty: true
+    volumes:
+      - ./src:/service/src
+    ports:
+      - 8000:8000
+    command: >
+      bash -c '
+        pip install -r src/requirements.txt
+        while :; do sleep 10; done
+      '
+  # mongo:
+  #   image: mongo
+  #   restart: always
+  #   environment:
+  #     MONGO_INITDB_ROOT_USERNAME: root
+  #     MONGO_INITDB_ROOT_PASSWORD: example
+  #   ports:
+  #     - 27017:27017
+  #   volumes:
+  #     - ./docker/databases/mongo/data/db:/data/db
+  #     - ./docker/databases/mongo/data/configdb:/data/configdb
+  # postgres:
+  #   image: postgres
+  #   ports:
+  #     - 5432:5432
+  #   volumes:
+  #     - ./docker/databases/postgres/init:/docker-entrypoint-initdb.d
+  #   environment:
+  #     POSTGRES_USER: root
+  #     POSTGRES_PASSWORD: root
+  #     POSTGRES_INITDB_ARGS: "--encoding=UTF-8"
+  #   hostname: postgres
+  #   restart: always
+  #   user: root
