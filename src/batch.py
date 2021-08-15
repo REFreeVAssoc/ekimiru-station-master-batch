@@ -3,8 +3,17 @@ import os
 import sys
 from pathlib import Path
 import click
+import json
+import logging
 
 sys.path.append('./')
+"""
+Write your module
+Ex. import hoge
+"""
+from logger.logging import log, get_logger
+
+logger = get_logger()
 
 # Load Env
 try:
@@ -15,14 +24,24 @@ except FileNotFoundError as e:
     # Google Cloud Functions
     pass
 
-# main batch command
+"""
+Main batch command
+Edit this function
+"""
+@log(logger)
 def mainCmd(event):
-    text=f'Hello Batch from {os.environ["ENV"]} using Python {sys.version}!'
+    try:
+        event = json.loads(event)
+        text=f'Hello Batch from {os.environ["ENV"]} using Python {sys.version}!\nEvent Object is {event}'
+        logger.info(text)
+    except Exception as e:
+        logger.error(e)
+        return e
     return text
 
 # To debug on local
 @click.command()
-@click.option('--arg', '-o', default="DefaultValue")
+@click.option('--arg', '-o', default='{"data": "test"}')
 def main(arg):
     mainCmd(arg)
 if __name__ == "__main__":

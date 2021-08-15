@@ -10,6 +10,8 @@ services:
       - ./src:/service/src
     ports:
       - 8010:8080
+    environment:
+      TZ: Asia/Tokyo
     command: >
       bash -c '
         pip install -r src/requirements.txt
@@ -25,6 +27,8 @@ services:
     volumes:
       - ./src:/var/task/src
       - ~/.aws:/root/.aws
+    environment:
+      TZ: Asia/Tokyo
     entrypoint: >
       bash -c '
       pip install -r src/requirements.txt &&
@@ -39,6 +43,8 @@ services:
       - ./src:/service/src
     ports:
       - 8000:8000
+    environment:
+      TZ: Asia/Tokyo
     command: >
       bash -c '
         pip install -r src/requirements.txt
