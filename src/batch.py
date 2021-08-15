@@ -20,7 +20,7 @@ try:
     with open('/service/src/env.yml') as f:
         os.environ.update(yaml.load(f, Loader=yaml.FullLoader))
 except FileNotFoundError as e:
-    os.environ["ENV"] = "Local"
+    os.environ["ENV"] = "local"
     # Google Cloud Functions
     pass
 

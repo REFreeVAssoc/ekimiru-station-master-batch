@@ -55,7 +55,7 @@ services:
   #   restart: always
   #   environment:
   #     MONGO_INITDB_ROOT_USERNAME: root
-  #     MONGO_INITDB_ROOT_PASSWORD: example
+  #     MONGO_INITDB_ROOT_PASSWORD: pass
   #   ports:
   #     - 27017:27017
   #   volumes:
@@ -69,7 +69,7 @@ services:
   #     - ./docker/databases/postgres/init:/docker-entrypoint-initdb.d
   #   environment:
   #     POSTGRES_USER: root
-  #     POSTGRES_PASSWORD: root
+  #     POSTGRES_PASSWORD: pass
   #     POSTGRES_INITDB_ARGS: "--encoding=UTF-8"
   #   hostname: postgres
   #   restart: always
