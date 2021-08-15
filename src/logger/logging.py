@@ -28,7 +28,6 @@ def get_logger():
     return logger
 
 
-
 def log(logger):
 
     def _decorator(func):
