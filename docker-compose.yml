@@ -41,6 +41,7 @@ services:
     tty: true
     volumes:
       - ./src:/service/src
+      - ./tests:/service/tests
     ports:
       - 8000:8000
     environment:

@@ -3,7 +3,7 @@ import sys
 import click
 import json
 import yaml
-sys.path.append('./')
+sys.path.append(os.path.dirname(__file__))
 """
 Write your module
 Ex. import hoge
@@ -28,7 +28,7 @@ Edit this function
 
 
 @log(logger)
-def mainCmd(event):
+def mainCmd(event='{"default": "value"}'):
     try:
         event = json.loads(event)
         text = f'Hello Batch from {os.environ["ENV"]} using Python {sys.version}!\nEvent Object is {event}'
@@ -36,7 +36,7 @@ def mainCmd(event):
     except Exception as e:
         logger.error(e)
         return e
-    return text
+    return "Hello, Python Batch!"
 
 # To debug on local
 
