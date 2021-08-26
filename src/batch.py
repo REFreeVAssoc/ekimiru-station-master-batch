@@ -28,9 +28,8 @@ Edit this function
 
 
 @log(logger)
-def mainCmd(event='{"default": "value"}'):
+def mainCmd(event={'default': 'value'}):
     try:
-        event = json.loads(event)
         text = f'Hello Batch from {os.environ["ENV"]} using Python {sys.version}!\nEvent Object is {event}'
         logger.info(text)
     except Exception as e:
@@ -44,6 +43,7 @@ def mainCmd(event='{"default": "value"}'):
 @click.command()
 @click.option('--arg', '-o', default='{"data": "test"}')
 def main(arg):
+    arg = json.loads(arg)
     mainCmd(arg)
 
 

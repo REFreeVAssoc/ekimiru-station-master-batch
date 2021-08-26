@@ -1,6 +1,23 @@
 version: '3.8'
 
 services:
+  local_batch:
+    build: ./docker/local/
+    container_name: 'local_batch_python'
+    working_dir: '/service/'
+    tty: true
+    volumes:
+      - ./src:/service/src
+      - ./tests:/service/tests
+    ports:
+      - 8000:8000
+    environment:
+      TZ: Asia/Tokyo
+    command: >
+      bash -c '
+        pip install -r src/requirements.txt
+        while :; do sleep 10; done
+      '
   gcp_batch:
     build: ./docker/gcp/
     container_name: 'gcp_batch_python'
@@ -33,23 +50,6 @@ services:
       bash -c '
       pip install -r src/requirements.txt &&
       /lambda-entrypoint.sh main.handler
-      '
-  local_batch:
-    build: ./docker/local/
-    container_name: 'local_batch_python'
-    working_dir: '/service/'
-    tty: true
-    volumes:
-      - ./src:/service/src
-      - ./tests:/service/tests
-    ports:
-      - 8000:8000
-    environment:
-      TZ: Asia/Tokyo
-    command: >
-      bash -c '
-        pip install -r src/requirements.txt
-        while :; do sleep 10; done
       '
   # mongo:
   #   image: mongo
