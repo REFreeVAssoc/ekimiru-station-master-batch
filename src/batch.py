@@ -8,7 +8,7 @@ sys.path.append(os.path.dirname(__file__))
 Write your module
 Ex. import hoge
 """
-from logger.logging import log, get_logger  # noqa: E402
+from entity.logger.logging import log, get_logger  # noqa: E402
 
 logger = get_logger()
 
