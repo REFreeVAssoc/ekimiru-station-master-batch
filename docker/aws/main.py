@@ -1,5 +1,5 @@
 import sys
-sys.path.append('./src/')
+sys.path.append('./src')
 import batch  # noqa: E402
 
 

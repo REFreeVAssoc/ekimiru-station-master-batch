@@ -1,6 +1,6 @@
 import sys
 import os
-sys.path.append(f"{os.path.dirname(__file__)}/../src/")
+sys.path.append(f"{os.path.dirname(__file__)}/../")
 """
 Write your module
 Ex. import hoge
