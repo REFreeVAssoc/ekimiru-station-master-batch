@@ -1,6 +1,6 @@
 tmux kill-server > /dev/null 2>&1
 docker-compose up -d
-array=$(docker ps --format '{{.Names}}' --filter 'name=batch')
+array=$(docker ps --format '{{.Names}}' --filter 'name=_batch')
 NUM=0
 for var in ${array[@]}
 do
@@ -12,7 +12,7 @@ do
     tmux split-window -h "docker logs -t ${var} -f"
     NUM=$((NUM+1))
 done
-LOCAL=$(docker ps --format '{{.Names}}' --filter 'name=batch' | grep local)
+LOCAL=$(docker ps --format '{{.Names}}' --filter 'name=_batch' | grep local)
 tmux select-window -t ${LOCAL}
 tmux select-pane -t 0
 tmux attach-session -t multicloud_python_batch
