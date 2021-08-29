@@ -11,8 +11,8 @@ services:
       - ./tests:/service/tests
     ports:
       - 8000:8000
-    environment:
-      TZ: Asia/Tokyo
+    env_file:
+      - ./env/local.env
     command: >
       bash -c '
         pip install -r requirements.txt
