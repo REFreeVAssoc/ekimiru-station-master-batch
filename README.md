@@ -25,3 +25,16 @@
 
 ## Test
 ```docker exec -it local_batch_python pytest tests/```
+
+## How to Develop
+1. Fork this repository to your github project
+2. clone your repository<br>
+   ```git clone <your repo>```<br>
+3. add this repository to your remote upstream<br>
+   ```git remote add upstream git@github.com:titabash/multicloud-python-batch.git```<br>
+   You are ready to develop your batch.
+## How to merge upstream change
+4. fetch the upstream repo<br>
+   ```git fetch upstream```<br>
+5. merge the upstream change<br>
+   ```git merge upstream/main```<br>
