@@ -1,4 +1,4 @@
-tmux kill-server > /dev/null 2>&1
+tmux kill-session -t multicloud_python_batch > /dev/null 2>&1
 docker-compose up -d
 array=$(docker ps --format '{{.Names}}' --filter 'name=_batch')
 NUM=0
