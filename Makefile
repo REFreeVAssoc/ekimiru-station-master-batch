@@ -10,4 +10,5 @@ stop:
 	sh ./tools/stop.sh
 restart:
 	sh ./tools/remove.sh
+	@if [ -z "`docker network ls | grep $(NETWORK_NAME)`" ]; then docker network create $(NETWORK_NAME); fi
 	sh ./tools/start.sh
