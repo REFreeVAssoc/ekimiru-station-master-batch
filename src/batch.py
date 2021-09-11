@@ -2,33 +2,23 @@ import os
 import sys
 import click
 import json
-import yaml
+
 sys.path.append(os.path.dirname(__file__))
 """
 Write your module
 Ex. import hoge
 """
-from entity.logger.logging import log, get_logger  # noqa: E402
+from utilities.logger.logging import log, get_logger  # noqa: E402
 
 logger = get_logger()
-
-# Load Env
-try:
-    with open('/service/src/env.yml') as f:
-        os.environ.update(yaml.load(f, Loader=yaml.FullLoader))
-except FileNotFoundError:
-    os.environ["ENV"] = "local"
-    # Google Cloud Functions
-    pass
-
-"""
-Main batch command
-Edit this function
-"""
 
 
 @log(logger)
 def mainCmd(event={'default': 'value'}):
+    """
+    Main batch command
+    Edit this function
+    """
     try:
         text = f'Hello Batch from {os.environ["ENV"]} using Python {sys.version}!\nEvent Object is {event}'
         logger.info(text)
@@ -37,12 +27,13 @@ def mainCmd(event={'default': 'value'}):
         return e
     return "Hello, Python Batch!"
 
-# To debug on local
-
 
 @click.command()
 @click.option('--arg', '-o', default='{"data": "test"}')
 def main(arg):
+    """
+    debug on local
+    """
     arg = json.loads(arg)
     mainCmd(arg)
 
