@@ -30,8 +30,8 @@ services:
       - ./src:/service/src
     ports:
       - 8010:8080
-    environment:
-      TZ: Asia/Tokyo
+    env_file:
+      - ./env/local.env
     networks:
       - default
       - shared-network
@@ -50,8 +50,8 @@ services:
     volumes:
       - ./src:/var/task/src
       - ~/.aws:/root/.aws
-    environment:
-      TZ: Asia/Tokyo
+    env_file:
+      - ./env/local.env
     networks:
       - default
       - shared-network

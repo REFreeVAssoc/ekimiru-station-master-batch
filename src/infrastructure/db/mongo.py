@@ -4,7 +4,7 @@ import os
 
 class Mongo(object):
 
-    def __init__(self, dbName, collectionName, user='root', pwd='pass', port=27017):
+    def __init__(self, dbName, collectionName, user, pwd, port=27017):
         if os.environ['ENV'] == 'local':
             self.client = MongoClient('mongo_db', port)
         elif os.environ['ENV'] == 'stg':
@@ -14,6 +14,8 @@ class Mongo(object):
         else:  # dev
             self.client = MongoClient('development.com', port)
 
+        user = user if user is not None else os.environ["MONGO_USER"]
+        pwd = user if user is not None else os.environ["MONGO_PASS"]
         self.client[dbName].authenticate(user, pwd)
         self.db = self.client[dbName]  # DB名を設定
         self.collection = self.db.get_collection(collectionName)
@@ -53,8 +55,7 @@ class Mongo(object):
 
 
 if __name__ == '__main__':
-    mongo = Mongo(dbName='test', collectionName='testCollections',
-                  user='testUser', pwd='password')
+    mongo = Mongo(dbName='test', collectionName='testCollections')
 
     print('--------------------Register--------------------')
     result = mongo.insert_one({'name': 'Mike', 'salary': 400000})
