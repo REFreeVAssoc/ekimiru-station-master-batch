@@ -18,6 +18,8 @@ RUN pip install --upgrade setuptools
 RUN pip install google-cloud
 RUN pip install functions-framework
 
+RUN export PYTHONPATH="$PYTHONPATH:/service/src"
+
 EXPOSE 8010
 
 CMD ["/bin/sh"]

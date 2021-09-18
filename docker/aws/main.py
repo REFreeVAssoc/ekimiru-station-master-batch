@@ -1,6 +1,6 @@
 import sys
 sys.path.append('./src')
-import batch  # noqa: E402
+import batch
 
 
 def handler(event, context):

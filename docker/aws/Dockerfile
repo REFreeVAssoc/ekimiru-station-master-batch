@@ -12,3 +12,5 @@ RUN unzip awscliv2.zip
 RUN ./aws/install
 RUN rm awscliv2.zip
 RUN rm -rf ./aws
+
+RUN export PYTHONPATH="$PYTHONPATH:$LAMBDA_TASK_ROOT/src"

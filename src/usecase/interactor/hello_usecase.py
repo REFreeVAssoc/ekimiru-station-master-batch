@@ -1,7 +1,6 @@
 import sys
 import os
 
-sys.path.append(f'{os.path.dirname(__file__)}../../')
 from utilities.logger.logging import log, get_logger
 from usecase.interface.ihello import IHello
 from entity.hello_entity import HelloEntity
