@@ -5,6 +5,7 @@ sys.path.append(f'{os.path.dirname(__file__)}../../')
 from utilities.logger.logging import log, get_logger
 from usecase.interface.ihello import IHello
 from entity.hello_entity import HelloEntity
+from controller.db_controller import DbController
 
 logger = get_logger()
 
@@ -20,3 +21,9 @@ class Hello(IHello):
             environment=os.environ["ENV"], py_version=sys.version, event=event)
         text = f'Hello Batch from {hello.environment} using Python {hello.py_version}!\nEvent Object is {hello.event}'
         return text
+
+    @log(logger)
+    def find_all(self) -> str:
+        db_controller = DbController()
+        data = db_controller.find()
+        return data
