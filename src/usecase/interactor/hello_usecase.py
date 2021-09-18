@@ -5,7 +5,7 @@ sys.path.append(f'{os.path.dirname(__file__)}../../')
 from utilities.logger.logging import log, get_logger
 from usecase.interface.ihello import IHello
 from entity.hello_entity import HelloEntity
-from controller.db_controller import DbController
+from gateway.db_gateway import DbController
 
 logger = get_logger()
 
