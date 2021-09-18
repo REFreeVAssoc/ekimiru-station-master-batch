@@ -1,9 +1,6 @@
-import os
-import sys
 import click
 import json
 
-sys.path.append(os.path.dirname(__file__))
 """
 Write your module
 Ex. import hoge
