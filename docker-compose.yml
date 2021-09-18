@@ -37,6 +37,7 @@ services:
       - shared-network
     command: >
       bash -c '
+        pip install -r src/requirements.txt -t ./python_modules/
         pip install -r src/requirements.txt
         functions-framework --target=handler --signature-type=event
       '
@@ -57,7 +58,7 @@ services:
       - shared-network
     entrypoint: >
       bash -c '
-      pip install -r src/requirements.txt &&
+      pip install -r src/requirements.txt -t ./python_modules/ &&
       /lambda-entrypoint.sh main.handler
       '
 networks:
