@@ -1,2 +1,2 @@
-tmux kill-session -t multicloud_python_batch
+tmux kill-session -t $(basename `git rev-parse --show-toplevel`)
 docker-compose down --rmi all --volumes --remove-orphans

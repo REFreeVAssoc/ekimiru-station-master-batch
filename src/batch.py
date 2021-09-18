@@ -8,24 +8,17 @@ sys.path.append(os.path.dirname(__file__))
 Write your module
 Ex. import hoge
 """
-from utilities.logger.logging import log, get_logger  # noqa: E402
+from utilities.logger.logging import log, get_logger
+from controller import hello_controller
 
 logger = get_logger()
 
 
 @log(logger)
 def mainCmd(event={'default': 'value'}):
-    """
-    Main batch command
-    Edit this function
-    """
-    try:
-        text = f'Hello Batch from {os.environ["ENV"]} using Python {sys.version}!\nEvent Object is {event}'
-        logger.info(text)
-    except Exception as e:
-        logger.error(e)
-        return e
-    return "Hello, Python Batch!"
+    result = hello_controller.main_batch_controller(event)
+    logger.info(result)
+    return result
 
 
 @click.command()
