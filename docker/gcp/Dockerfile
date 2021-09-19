@@ -11,15 +11,13 @@ ENV LC_ALL ja_JP.UTF-8
 ENV TZ JST-9
 ENV TERM xterm
 
-RUN apt-get install -y vim less curl
-
+RUN apt-get -y install libpq-dev
+RUN apt-get -y install gcc
 RUN mkdir ./python_modules
 RUN pip install --upgrade pip
 # google cloud
 RUN pip install google-cloud
 RUN pip install functions-framework
-
-RUN export PYTHONPATH="$PYTHONPATH:/service/src"
 
 EXPOSE 8010
 
