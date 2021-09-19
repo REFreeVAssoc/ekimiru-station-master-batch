@@ -12,6 +12,7 @@ services:
     ports:
       - 8000:8000
     env_file:
+      - ./env/common.env
       - ./env/local.env
     networks:
       - default
@@ -31,7 +32,8 @@ services:
     ports:
       - 8010:8080
     env_file:
-      - ./env/local.env
+      - ./env/common.env
+      - ./env/gcp.env
     networks:
       - default
       - shared-network
@@ -52,7 +54,8 @@ services:
       - ./src:/var/task/src
       - ~/.aws:/root/.aws
     env_file:
-      - ./env/local.env
+      - ./env/common.env
+      - ./env/aws.env
     networks:
       - default
       - shared-network

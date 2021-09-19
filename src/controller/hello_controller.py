@@ -2,8 +2,8 @@
 Write your module
 Ex. import hoge
 """
-from utilities.logger.logging import log, get_logger
 from usecase.interactor.hello_usecase import Hello
+from utilities.logger.logging import log, get_logger
 
 logger = get_logger()
 
